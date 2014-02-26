@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<title>Emilio Pizzeria</title>
+<script>var NREUMQ=[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="js/script.js"></script>
+ <script src="info.js"></script>
+<link href="style.css" rel="stylesheet"  />
+<?php
+// Location of the XML file on the file system
+$file = 'pizzeria.xml';
+$xml = simplexml_load_file($file);
+?>
+</head>
+
+<body  class="home blog">
+  <div id="wrapper" class="hfeed">
+   <div id="info">
+  
+    <div class="tip">
+      
+	  <p>For ordering a pizza you should follow these steps:</p>
+	  <ul>
+	    <li>1.Select your desired pizza from the menu.</li>
+
+	    <li>2.Order your selected pizza by clicking on the name of the pizza.</li>
+	    <li>3.Enter the quantity of the pizzaz you would like to order.</li>
+	    <li>4.Click on the Add to order botton.</li>
+	    <li>5.You can edit your order in the "Your order" form.</li>
+	    <li>6.Click on Checkout botton to finalize your shopping and see the progress.</li>
+	   </ul>
+        </div>
+      </div>
+
+   <div id="header">
+    <div id="masthead">
+    
+     <div id="ttw-site-logo"></div>
+      <div id="ttw-site-logo-link" onclick="location.href= '.'" style="cursor:pointer"></div>
+     
+        <h1 id="site-title">
+         <span>
+           Welcome to Emilio Pizzeria
+         </span>          
+        </h1>
+     
+     <div id="nav-top-menu"><div id="access2" role="navigation"></div></div>
+      <div id="branding" role="banner">
+      <!-- <img src="pizza1.jpg" alt="pizza" width="940" height="198" /> -->
+      </div><!-- branding -->
+      <div id="nav-bottom-menu">
+       <div id="access" role="navigation">
+        <div id="menu">
+       
+       </div>
+      </div><!-- access -->      
+      </div><!-- nav-bottom-menu -->
+    </div> <!-- masthead -->
+  </div> <!-- header -->  
+     
+   <div id="main">
+   
+    <div id="top-ten">
+    <h1>Top ten pizzas</h1>
+    
+    <ol>
+       
+    <li>Pineapple</li>
+    <li>Du chef</li>
+    <li>Cappriciosa</li>
+    <li>Orientale</li>
+    <li>La Bella</li>
+    <li>Bussola</li>
+    <li>Boston</li>
+    <li>Texas</li>
+    <li>Hawaii</li>
+    <li>Banana</li>	
+    
+    </ol>
+    
+    
+
+       
+    </div>
+    
+    
+    
+    <div id="quantity">
+       <div id="quantity-form">
+        <form action="#"> 
+                 
+        <fieldset id="view"> 
+           <legend>View order</legend>  
+             <div class="sort"><label class="label"><span class="form-sort">Name:</span></label>
+                               <label class="label"><span class="form-sort">?</span></label>
+             </div>
+               <div class="sort"><label class="label"><span class="form-sort">Quantity:</span></label>
+                                 <input name="quantiy"  type="text" id="p_quantity" />
+                                 <input name="button_quantity" type="button" id="b_quantity" value="Add to order"/>                               
+               </div>
+         </fieldset>
+         </form>
+         </div>
+      
+      
+      
+      <div id="check">
+       <div id="check-form">
+          <form action="check">
+            <fieldset id="order"> 
+           <legend>Your order</legend>  
+             <ul></ul>
+               <div class="sort"><input name="button_quantity" type="button" id="b_quantity" value="checkout" />                               
+               </div>
+         </fieldset>
+         </form>
+         </div>
+      </div>
+      </div>
+   
+       
+   <div id="container">
+	<div id="accordion">
+	
+	<?php
+	
+		if (count($xml->make) > 0) {
+    	foreach ($xml->make as $node) {
+      	  // This prints out each of the models
+    			echo $xml->pizza[0]->name;
+
+    		}
+		}
+
+	?>
+		<div class="item">
+			<a href="#">Products</a>
+			  
+			<span>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+							
+			</span>
+			<p class="select_bt"><input name="button_quantity" type="button" id="b_quantity" value="Select" /></p>
+			
+		</div>
+			<div class="item">
+			<a href="#">Products</a>
+			  
+			<span>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+							
+			</span>
+			<p class="select_bt"><input name="button_quantity" type="button" id="b_quantity" value="Select" /></p>
+			
+		</div>
+			<div class="item">
+			<a href="#">Products</a>
+			  
+			<span>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+							
+			</span>
+			<p class="select_bt"><input name="button_quantity" type="button" id="b_quantity" value="Select" /></p>
+			
+		</div>
+			<div class="item">
+			<a href="#">Products</a>
+			  
+			<span>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+							
+			</span>
+			<p class="select_bt"><input name="button_quantity" type="button" id="b_quantity" value="Select" /></p>
+			
+		</div>
+			<div class="item">
+			<a href="#">Products</a>
+			  
+			<span>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+							
+			</span>
+			<p class="select_bt"><input name="button_quantity" type="button" id="b_quantity" value="Select" /></p>
+			
+		</div>
+			<div class="item">
+			<a href="#">Products</a>
+			  
+			<span>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+							
+			</span>
+			<p class="select_bt"><input name="button_quantity" type="button" id="b_quantity" value="Select" /></p>
+			
+		</div>
+
+		
+		
+		
+
+		
+	</div>
+ 
+    </div><!-- container -->     
+    
+    
+    
+    
+      
+      
+    </div>     
+   </div><!-- main -->
+   
+   
+     <div id="footer">
+       <div id="colophon">
+         <table id='ttw-ftable' ><tr>
+         <td id="ttw-ftdl">
+          <div id="site-info"> <span id="siteinf">&copy; 2011 -</span> </div>         
+         </td>
+         </tr>
+         </table>       
+          
+     </div><!-- colophon -->
+    
+   </div> <!-- footer -->
+   </div> <!-- wrapper -->
+   </body> 
+  </html>

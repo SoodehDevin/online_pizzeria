@@ -1,0 +1,429 @@
+/* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+
+body {
+    line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    font-weight: normal;
+}
+
+blockquote {
+    quotes: none;
+}
+blockquote:before, blockquote:after {
+    content: '';
+    content: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+a img {
+    border: none;
+}
+
+
+/* 
+-------------------------------------------------------------- */
+body {
+	
+	   width: 1024px;
+		padding-top: 10px;
+		margin-left: auto ;
+  		margin-right: auto ;
+  		background-color: #595454;
+  		font-family: Arial;
+}
+#wrapper {
+
+      border: solid white 3px;
+      background-color: #FBB917;
+      
+      
+}
+
+#header {
+      
+      height: 100px;
+      border-bottom-width: 3px;
+      border-bottom-style: solid;
+      border-bottom-color: white;       
+      
+}
+#site-title {
+	   
+	   height: 20px;
+		margin-left: 160px;
+		margin-right: 200px;
+		padding-top: 10px;
+		text-align: center;
+		font-size: 40px;
+}
+div#info {
+	position:relative;
+	margin-left: 150px;
+	font-family:Delicious-Roman;
+	font-size:1em;
+	
+}
+#info {       
+       position: absolute;       
+       height: 24px;
+       width: 24px;
+       background-image:url('img/iconwheat24.jpeg');
+       float: right;
+       margin-left: 200px;
+      
+}
+
+div#info div.tip{
+    display:none;
+    width: 300px;
+    position: relative;
+    right: 286px;
+    padding: 5px;
+    z-index:500;
+    background: white;
+    border:solid grey 1px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+   
+}
+#info div.tip ul {
+
+     list-style: none;
+	}
+
+#main {
+	
+	   background-color: white;
+	   overflow: hidden;
+}
+
+#container {
+
+      
+	   
+	   //overflow: hidden;
+   	//border:1px solid #B40404;
+   	margin-left: 222px;	
+   	//width: 534px;
+   	
+   	
+}
+
+#top-ten{
+	
+      
+      
+      width:  150px;  
+      
+      font-size: 20px;
+      padding-top: 5px;
+      float: left;
+      
+}
+#top-ten ol{
+	
+	   text-decoration: none;
+      padding-left: 40px;
+	   cursor: pointer;
+	   
+	
+}
+
+#top-ten ol li:hover {
+	text-shadow:1px 1px 2px rgba(10,10,10,0.5);
+	
+}
+
+#top-ten h1 {
+
+      font-size: 30px;
+      padding-bottom: 15px;
+}
+#quantity{
+	
+      
+      float: right; 
+	  
+		width: 150px;		
+	   
+	  
+	   
+		
+ }
+#quantity ol{ 
+
+    margin-left: 20px;
+	
+	}
+	
+legend {
+	
+  color: black;;
+  background: #FF8000 ;
+  border-radius: 5px;
+  padding: 2px 6px;
+  margin-left: 1px;
+  margin-right: 3px;
+
+} 
+fieldset{
+	
+  padding-top: 5px;
+  padding-bottom: 10px;	
+  padding-left: 15px;
+  padding-right: 5px;
+  border: 3px solid #FF8000 ;
+  border-radius: 20px;
+  width: 110px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+fieldset#order{
+	
+  //height: 220px;
+	
+	
+}
+label.label {
+	
+  
+}
+input#p_quantity
+{
+	
+  width: 75px;	
+  
+}
+input#b_quantity{
+
+  
+  margin-left: 55px;
+  margin-top: 10px;
+
+}
+input#b_checkout
+{
+	margin-top: 10px;
+	margin-left: 75px;
+	
+	
+}
+
+
+input#b_add
+{
+	margin-top: 10px;
+	margin-left: 65px;
+	
+	
+}
+
+
+	
+
+
+
+#footer {
+   
+  height: 50px;  
+	   
+}
+#site-info {
+ 
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-left: 220px;
+  color: yellow;
+}
+/* 
+------------------------Menu-------------------------------------- */
+
+	
+#accordion .item {
+	width:  150px; ;
+	height: 30px; /* height = total height of A child element */
+	overflow: hidden;
+	
+	transition: height ease-in-out 500ms; /* css3 transition */
+	-o-transition: height ease-in-out 500ms;
+	-moz-transition: height ease-in-out 500ms;
+	-webkit-transition: height ease-in-out 500ms;
+	
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	
+	margin-bottom: 2px;
+}
+#accordion a {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	
+	background: #e6e6e6;
+	padding: 5px;
+	color: #1e1e1e;
+	text-decoration: none;
+}
+#accordion p {
+	height: 150px;
+	padding: 5px;
+}
+#accordion div:hover {
+	height: 180px; /* height = total height of A and P elements */
+}
+#accordion div:hover a {
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+}
+/*----------------------------Pizza list---------------------------------------------*/
+
+#navcontainer
+{
+margin-top: 30px;
+margin-bottom: 1em;
+overflow: hidden;
+//width: 460px;
+display: none;
+}
+
+.navlist
+{
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+.navlist li
+{
+border: 1px solid #000;
+border-radius: 15px;
+float: left;
+line-height: 1.1em;
+margin-right: 8px;
+margin-bottom: 8px;
+padding: 10px;
+}
+
+div.edit_div {
+	display: none;
+}
+
+
+input.edit_input {
+	display: block;
+	width: 100px;
+	}
+
+/************************************Add Pizza *****************************************/
+
+div#addrecipie {
+	margin-top: 30px;
+	margin-bottom: 1em;
+	overflow: hidden;
+	//width: 460px;
+	display: none;
+}	
+
+.save_recepie {
+	
+	display: none;
+}
+
+.edit_recepie {
+	
+	display: none;
+}
+
+.cancel_recepie {
+	margin-left: 10px;
+	display: none;
+}
+
+
+.add_input {
+	display: none;
+}
+.add_input_label {
+	display: none;
+}
+
+
+/**************************************ingredients-edit ********************************/
+
+
+#ing_edit 
+{
+margin-top: 30px;
+margin-bottom: 1em;
+overflow: hidden;
+//width: 460px;
+display: none;
+
+padding: 10px;
+margin-top: 5px; 
+}
+
+#inglist
+{
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+#inglist li
+{
+border: 1px solid #000;
+border-radius: 15px;
+float: left;
+line-height: 1.1em;
+margin-right: 8px;
+margin-bottom: 8px;
+padding: 10px;
+}
+
+
+
+input.edit_ing_input {
+	display: none;
+	width: 70px;
+}
+
+img.save_ing {
+	display: none;
+	margin-top: 10px;
+}
+img.cancel_ing {
+	display: none;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+input.ing_input {
+	margin-bottom: 10px;
+}

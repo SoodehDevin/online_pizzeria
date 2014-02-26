@@ -1,0 +1,9 @@
+<?php
+
+$file = 'test.xml';
+$trimedpost = str_replace("\\","", $_POST); 
+$content = serialize($trimedpost);
+file_put_contents($file, $content);
+
+
+?>

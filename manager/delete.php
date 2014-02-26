@@ -1,0 +1,23 @@
+<?php
+
+	$pizza = $_POST['item'];
+	$id = $_POST['id'];
+
+	//$file_handle = fopen('test2.xml','w');
+	
+	$dom = new DOMDocument;
+	$dom->load('../pizzeria.xml');
+	
+	$xpath = new DOMXPath($dom);
+	$query = sprintf('/pizzeria/menu//pizza[@id= "%d" ]', $id);
+	
+	
+	foreach($xpath->query($query) as $pizza) {
+ 	   	$pizza->parentNode->removeChild($pizza);	
+	}
+	
+	$dom->save('../pizzeria.xml');
+	
+	
+	
+?>

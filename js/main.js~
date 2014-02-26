@@ -1,0 +1,322 @@
+$(document).ready(function() {
+	
+   // do stuff when DOM is ready
+   // In this part we handle the addition of the selected pizzas in the shop
+   
+  
+  
+  var idglobal = null; // to keep each pizza id
+	  
+  
+  // The global variable to keep the whole pizzeria volume!
+  var xml_pizzeria = null;
+  
+  // This is to read the pizzeria form xml file into the variable
+  $.ajax({  
+         	
+    				type: "GET",  
+    				url: "pizzeria.xml",  
+    				dataType: "xml",  
+    				success: function(xml) {  xml_pizzeria = xml; },
+    				error: function(){alert("Error: Something went wrong");}  
+				});  
+				
+   /******************************************************************/
+   
+   var select = $('.b_select');
+   
+   
+   select.click(function() {
+   	
+  			var pizza_name = $(this).siblings('a').html();
+  			
+  			$('#lbl_pizza_name').text(pizza_name);
+  			
+		});
+   
+
+ 
+ 
+/***************************Shopping Cart part**************************/
+
+      
+      
+      $('#b_add').click(function() {
+      	
+			var pname = $('#lbl_pizza_name').text();
+      	var pquantity = parseInt($('#how-many-1').val());
+      	var flag = true;	      	
+      	
+      	
+      	$(xml_pizzeria).find('pizza').each(function(){
+							     	
+     				if ($(this).find('name').text() == pname){
+     				var idpizza = $(this).attr('id');
+     				
+     				idglobal = idpizza ;}
+     				});	
+      	         
+			         
+         
+			// Reading the pizzarea.xml into the xml data-type! 
+			
+			if (pname == "") 
+         	alert("Please select a pizza first!");
+         				
+			else {        
+         	
+         	
+         	    
+							     $(xml_pizzeria).find('pizza').each(function(){
+							     	
+     										if ($(this).find('name').text() == pname){
+
+                 							$(this).find('ingredient').each(function(){
+							 						
+							 						var units = parseInt($(this).attr('units'));	
+							 						var id = $(this).attr('id');
+							 						
+							 						
+										 			$(xml_pizzeria).find('storage').find('ingredient').each(function() {
+														if($(this).attr('id') == id) 
+															if(($(this).attr('in_storage')) < (units * pquantity)){
+																//alert("the order can not placed! Lack of ingredients!");
+																flag = false;
+																
+
+															}
+															else {
+																	var in_storage_af = parseInt($(this).attr('in_storage')) - (units * pquantity);
+																	$(this).attr('in_storage' , in_storage_af);
+																	//alert($(this).attr('in_storage'));
+															}																
+																
+																
+													
+																						 
+							 						});                 
+                  
+                  						});
+                  						
+												if(flag == false) {
+													alert("the order can not placed! Lack of ingredients!");
+													return;
+													}                  						
+                  						
+                  						else if(flag == true) { // Add the order to the order box.
+                  							var count = 0;
+                  							
+                  							// This part controls to prevent the addition of extra same lables
+         										$('.p_name').each(function(){ 
+         													if ( pname == $(this).val()) {
+         													
+         															// Two helper variables to keep track of pizza quantities
+         															var prev_quant = parseInt($(this).next().val());
+         															var new_quant = prev_quant + parseInt(pquantity);
+         															
+         															$(this).next().val(new_quant);
+         															$(this).prev().val(new_quant);
+         															count++;
+         															
+         													}
+         													});		
+         												
+         												if(count == 0){
+         													
+         													$('#check_out').prepend('<br /><br />');
+         													$('#check_out').prepend('<img src = "img/del.jpg" style="float:right;" class = "pizza_cross" />');
+      														$('#check_out').prepend('<input type="text"  style = "border: none;background: transparent; width:20px" name = "quantity" disabled="disabled" value = "' + pquantity + '"/>');
+      														
+																
+      														$('#check_out').prepend('<input type="text" class = "p_name" style = "border: none;background: transparent;width:150px" disabled="disabled" name = "'+ idglobal +'" value = "' + pname + '"/>');
+      										  			   $('#check_out').prepend('<input type="text" style = "display : none ;" name = "'+idglobal+'" value = "' + pquantity + '"/>');	
+      										  			}
+     			   							}
+                  					}
+                  		
+     			
+     			
+     							});
+  
+     			
+     	}     	     
+});
+
+
+
+
+/*********************************************************************/
+
+// Here we will delete a pizza if user doesn’t want it any more
+
+ $('.pizza_cross').live('click',function() {
+ 
+		
+		var pname = $(this).prev().prev().val();
+		var quant = parseInt($(this).prev().val());
+ 
+ 
+ 		
+ 		$(xml_pizzeria).find('pizza').each(function(){
+							     	
+     					if ($(this).find('name').text() == pname){
+
+                 		$(this).find('ingredient').each(function(){
+							 						
+									var units = $(this).attr('units');	
+									var id = $(this).attr('id');
+							 
+									$(xml_pizzeria).find('storage').find('ingredient').each(function() {
+												if($(this).attr('id') == id) { // Add the used ingredients back into the pizzeria
+															
+																	var in_storage_af = parseInt($(this).attr('in_storage')) + (parseInt(units) * parseInt(quant));
+																	//alert(in_storage_af);
+																	$(this).attr('in_storage' , in_storage_af);
+																	
+															}																
+																
+																
+													
+																						 
+							 						});                 
+                  
+                  						});
+                  }
+         });         
+         
+         
+         
+         $(this).next().next().remove();
+         $(this).next().remove();
+         $(this).prev().prev().prev().remove();
+         $(this).prev().prev().remove();
+         $(this).prev().remove();
+         $(this).remove();
+ 	
+ 		
+ 	});
+ 
+/***************************Check Out part**************************/ 
+ 
+ 
+ 
+ $('#b_checkout').click(function() {
+ 	
+			var ct = $('#check_out').children().size(); // number of pizzas that have been ordered	
+ 			
+			var xmldata = $(this).siblings('form').serialize();
+ 			
+ 			if(ct != 0 ){ // send xml data to the server 
+ 				//alert('check out is done');
+ 				//alert(xmldata);
+ 				
+ 				$.ajax({
+   					url: "checkout.php",
+   					type: "POST",
+   					data: xmldata,
+   					success: function(){},
+   					error:function (xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+                }  
+ 				}); 
+ 				
+ 				$('#check_out').children().remove();
+ 				//window.location.reload(true);
+
+ 				}
+ 				
+ 			else 
+ 				alert('please order at least a pizza');
+ 	});
+ 			
+ 
+ 
+ 
+ 
+ /**********************************************************************/
+ // This is a plugin to support the wheel operation of the user's mouse!
+ // WITHOUT Plugin
+ /**********************************************************************/
+ 
+var EventUtil = {
+
+    addHandler: function(element, type, handler){
+        if (element.addEventListener){
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent){
+            element.attachEvent("on" + type, handler);
+        } else {
+            element["on" + type] = handler;
+        }
+    },
+	
+	removeHandler: function(element, type, handler){
+        if (element.removeEventListener){
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent){
+            element.detachEvent("on" + type, handler);
+        } else {
+            element["on" + type] = null;
+        }
+    },
+	
+	getEvent: function(event) {
+        return event ? event : window.event;
+    },
+	
+	getTarget: function(event) {
+		return event.target || event.srcElement;    
+	},
+	
+	getWheelDelta: function(event) {
+        if (event.wheelDelta){
+            return event.wheelDelta;
+        } else {
+            return -event.detail * 40;
+        }
+    },
+	
+	preventDefault: function(event) {
+        if (event.preventDefault){
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+    }
+    
+};
+
+function onWheel(event) {
+
+	event = EventUtil.getEvent(event);
+	var curElem = EventUtil.getTarget(event);
+	var curVal = parseInt(curElem.value);
+	var delta = EventUtil.getWheelDelta(event);
+	
+	if (delta > 0) {
+		curElem.value = curVal + 1;
+	} else if( curVal == 1) {
+		curElem.value = curVal;				
+	}else { 
+		curElem.value = curVal - 1;
+	} 
+	
+	EventUtil.preventDefault(event);
+	
+}
+
+$(function() {
+
+	$(".wheelable").hover(function(){
+		EventUtil.addHandler(document,'mousewheel',onWheel);
+		EventUtil.addHandler(document,'DOMMouseScroll',onWheel);
+	},
+	function(){
+		EventUtil.removeHandler(document,'mousewheel',onWheel);
+		EventUtil.removeHandler(document,'DOMMouseScroll',onWheel);
+	});
+	
+});
+
+});
